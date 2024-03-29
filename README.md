@@ -1,4 +1,4 @@
-# vzimmer.github.io
+# vincentjzimmer.github.io
 
 This is my home page
 
