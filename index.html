@@ -1,13 +1,350 @@
-Vincent Zimmer <br>
-<br>
-This is my home page <br>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vincent James Zimmer — Firmware, Security & Formal Methods</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #58a6ff;
+      --accent2: #3fb950;
+      --warn: #d29922;
+      --tag-bg: #21262d;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
-I work on embedded firmware in the Seattle, WA area.<br>
+    /* ── layout ── */
+    .container { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem; }
 
-I am presently a sr. principal engineer on firmware with Intel, for whom I've been employed since 1997.<br>
+    /* ── header ── */
+    header { border-bottom: 1px solid var(--border); padding-bottom: 1.5rem; margin-bottom: 2rem; }
+    header h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.5px; }
+    header .tagline {
+      color: var(--muted); font-size: 1rem; margin-top: 0.3rem;
+    }
+    .links { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; }
+    .links a {
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.3rem 0.75rem;
+      font-size: 0.875rem;
+      color: var(--accent);
+      transition: border-color 0.15s;
+    }
+    .links a:hover { border-color: var(--accent); text-decoration: none; }
 
-I have a Bachelor of Science in Electrical Engineering from Cornell University, Ithaca, New York in 1992 and a Master of Science in Computer Science and Engineering from the University of Washington, Seattle, Washington in 1999.<br>
+    /* ── section ── */
+    section { margin-bottom: 2.5rem; }
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent2);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 1px solid var(--border);
+    }
 
-I've written a few books, papers and patents you can find at 
-<a href="https://scholar.google.com/citations?user=9fW87_IAAAAJ&hl=en&oi=sra">Google Scholar Page</a>.<br>
+    /* ── current role badge ── */
+    .role-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 0.75rem;
+    }
+    .role-card .company { font-weight: 700; font-size: 1rem; }
+    .role-card .title { color: var(--accent); font-size: 0.9rem; margin-top: 0.1rem; }
+    .role-card .dates { color: var(--muted); font-size: 0.8rem; margin-top: 0.15rem; }
+    .role-card .desc { margin-top: 0.5rem; font-size: 0.9rem; color: #cdd9e5; }
+    .role-card.past { border-left-color: var(--border); }
+    .role-card.past .title { color: var(--muted); }
 
+    /* ── skills grid ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 0.75rem;
+    }
+    .skill-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+    }
+    .skill-card .sk-label { font-weight: 600; font-size: 0.85rem; color: var(--warn); margin-bottom: 0.25rem; }
+    .skill-card .sk-val { font-size: 0.85rem; color: var(--muted); }
+
+    /* ── books ── */
+    .book-list { list-style: none; }
+    .book-list li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+    }
+    .book-list li:last-child { border-bottom: none; }
+    .book-list .pub-year { color: var(--muted); font-size: 0.8rem; margin-left: 0.5rem; }
+
+    /* ── papers ── */
+    .paper-list { list-style: none; }
+    .paper-list li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.875rem;
+    }
+    .paper-list li:last-child { border-bottom: none; }
+    .paper-list .venue { color: var(--warn); font-size: 0.8rem; }
+
+    /* ── tags ── */
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.5rem; }
+    .tag {
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.15rem 0.65rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ── resume download ── */
+    .dl-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #0d1117 !important;
+      font-weight: 700;
+      padding: 0.55rem 1.25rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      text-decoration: none !important;
+    }
+    .dl-btn:hover { opacity: 0.85; }
+
+    /* ── footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+      margin-top: 2rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- ── HEADER ─────────────────────────────────────────────────── -->
+  <header>
+    <h1>Vincent James Zimmer</h1>
+    <div class="tagline">Firmware · Platform Security · Formal Methods · Seattle area, WA</div>
+    <div class="links">
+      <a href="https://www.linkedin.com/in/vzimmer/" target="_blank">🔗 LinkedIn</a>
+      <a href="https://sites.google.com/site/vincentzimmer/cv" target="_blank">📄 Full CV</a>
+      <a href="https://scholar.google.com/citations?user=9fW87_IAAAAJ" target="_blank">🎓 Google Scholar</a>
+      <a href="https://github.com/vincentjzimmer" target="_blank">🐙 GitHub</a>
+      <a href="mailto:vincent.zimmer@gmail.com">✉ Email</a>
+    </div>
+  </header>
+
+  <!-- ── RESUME DOWNLOAD ────────────────────────────────────────── -->
+  <section>
+    <h2>Resume</h2>
+    <p style="font-size:0.9rem; color:var(--muted); margin-bottom:0.5rem;">
+      Current resume (PDF) — updated April 2026:
+    </p>
+    <!-- TODO: upload your PDF to this repo and update the href -->
+    <a class="dl-btn" href="Vincent_Zimmer_Resume.pdf" download>⬇ Download Resume (PDF)</a>
+  </section>
+
+  <!-- ── CURRENT ROLE ───────────────────────────────────────────── -->
+  <section>
+    <h2>Employment</h2>
+
+    <div class="role-card">
+      <div class="company">Anduril Industries</div>
+      <div class="title">Staff Software Engineer — Firmware &amp; Security</div>
+      <div class="dates">October 2025 – Present · Seattle, WA</div>
+      <div class="desc">
+        Firmware for defense-grade autonomous systems. Rust, C, OCaml on Linux/NixOS.
+        NVIDIA Jetson platform bring-up and security hardening for AI edge hardware.
+        Formal verification using Lean 4, TLA+, Rocq, Isabelle/HOL, CBMC, Frama-C.
+      </div>
+      <div class="tags">
+        <span class="tag">Rust</span><span class="tag">C</span><span class="tag">OCaml</span>
+        <span class="tag">Lean 4</span><span class="tag">TLA+</span><span class="tag">Rocq</span>
+        <span class="tag">Isabelle/HOL</span><span class="tag">NixOS</span><span class="tag">NVIDIA Jetson</span>
+      </div>
+    </div>
+
+    <div class="role-card past">
+      <div class="company">Microsoft Corporation</div>
+      <div class="title">Principal Software Engineer — Firmware Security</div>
+      <div class="dates">October 2024 – September 2025 · Redmond, WA</div>
+      <div class="desc">C and Rust firmware (Project Mu). Threat modeling of platform firmware and OS features.</div>
+    </div>
+
+    <div class="role-card past">
+      <div class="company">Intel Corporation</div>
+      <div class="title">Senior Principal Engineer — Firmware Architecture &amp; Security</div>
+      <div class="dates">February 1997 – September 2024 · Seattle area, WA</div>
+      <div class="desc">
+        27 years leading UEFI/firmware architecture. Co-authored UEFI Secure Boot (shipped in 3B+ devices),
+        PI Specification vol. 1, Intel FSP 1.0–2.4. Chair: UEFI Security Subteam, UEFI Networking Subteam.
+        Intel representative to TCG Technical Committee. Contributed to NIST SP 800-193.
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SKILLS ─────────────────────────────────────────────────── -->
+  <section>
+    <h2>Technical Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="sk-label">Firmware / BIOS</div>
+        <div class="sk-val">UEFI 2.x, EDKII, Project Mu, PI Spec, FSP, SMM, PEI, DXE, ACPI</div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-label">Platform Security</div>
+        <div class="sk-val">Secure Boot, TPM/TCG, SPDM, NIST 800-193, post-quantum crypto, threat modeling</div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-label">Formal Methods</div>
+        <div class="sk-val">Lean 4, TLA+, Rocq/Coq, Isabelle/HOL, CBMC, Frama-C, symbolic execution, fuzzing</div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-label">Languages</div>
+        <div class="sk-val">Rust · C · OCaml · Python · Nix · Bash · LaTeX</div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-label">Platforms / Hardware</div>
+        <div class="sk-val">x86/x64, ARM64, NVIDIA Jetson, Itanium, RISC-V, IoT/OCP</div>
+      </div>
+      <div class="skill-card">
+        <div class="sk-label">Standards</div>
+        <div class="sk-val">UEFI Forum, TCG, NIST, IETF (RFC 5970 co-author), OCP OSF</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BOOKS ──────────────────────────────────────────────────── -->
+  <section>
+    <h2>Books</h2>
+    <ul class="book-list">
+      <li>
+        <a href="https://www.amazon.com/dp/1484279387" target="_blank">
+          <strong>System Firmware: An Essential Guide to Open Source and Embedded Solutions</strong>
+        </a>
+        — Banik, Zimmer · Apress<span class="pub-year">2022</span>
+      </li>
+      <li>
+        <a href="https://www.amazon.com/gp/product/1484261054/" target="_blank">
+          <strong>Building Secure Firmware: Armoring the Foundation of the Platform</strong>
+        </a>
+        — Yao, Zimmer · Apress<span class="pub-year">2020</span>
+      </li>
+      <li>
+        <a href="https://www.amazon.com/dp/1501514784/" target="_blank">
+          <strong>Beyond BIOS: Developing with the Unified Extensible Firmware Interface, 3rd Ed.</strong>
+        </a>
+        — Zimmer, Rothman, Marisetty · De Gruyter<span class="pub-year">2017</span>
+      </li>
+      <li>
+        <a href="https://www.amazon.com/dp/1501514806/" target="_blank">
+          <strong>Harnessing the UEFI Shell: Moving the Platform Beyond DOS, 2nd Ed.</strong>
+        </a>
+        — Rothman, Zimmer, Lewis · De Gruyter<span class="pub-year">2017</span>
+      </li>
+      <li>
+        <a href="https://www.amazon.com/dp/1484200713/" target="_blank">
+          <strong>Embedded Firmware Solutions: Development Best Practices for the IoT</strong>
+        </a>
+        — Sun, Zimmer et al. · Apress<span class="pub-year">2015</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ── SELECTED PAPERS ────────────────────────────────────────── -->
+  <section>
+    <h2>Selected Publications &amp; Standards</h2>
+    <ul class="paper-list">
+      <li>
+        Yao, Matusiewicz, Zimmer —
+        <a href="https://www.mdpi.com/2410-387X/6/4/48" target="_blank">
+          Post Quantum Design in SPDM for Device Authentication and Key Establishment
+        </a>
+        <div class="venue">MDPI Journal of Cryptography, 2022</div>
+      </li>
+      <li>
+        Yang, Viktorov, Yang, Yao, Zimmer —
+        <a href="https://ieeexplore.ieee.org/document/9218694" target="_blank">
+          UEFI Firmware Fuzzing with Simics Virtual Platform
+        </a>
+        <div class="venue">DAC 2020</div>
+      </li>
+      <li>
+        Bazhaniuk, Loucaides, Rosenbaum, Tuttle, Zimmer —
+        <a href="https://www.usenix.org/conference/woot15/workshop-program/presentation/bazhaniuk" target="_blank">
+          Symbolic Execution for BIOS Security
+        </a>
+        <div class="venue">USENIX WOOT 2015</div>
+      </li>
+      <li>
+        Huth, Freimann, Zimmer, Thaler —
+        <a href="https://www.rfc-editor.org/rfc/rfc5970" target="_blank">RFC 5970: DHCPv6 Options for Network Boot</a>
+        <div class="venue">IETF, 2010</div>
+      </li>
+      <li>
+        <a href="https://github.com/vincentjzimmer/Documents" target="_blank">
+          Full list of papers, talks, and book chapters →
+        </a>
+        <div class="venue">vincentjzimmer/Documents on GitHub</div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- ── EDUCATION ──────────────────────────────────────────────── -->
+  <section>
+    <h2>Education</h2>
+    <div class="role-card past" style="margin-bottom:0.75rem;">
+      <div class="company">University of Washington — Seattle</div>
+      <div class="title">M.S. Computer Science &amp; Engineering</div>
+      <div class="dates">June 1999</div>
+    </div>
+    <div class="role-card past">
+      <div class="company">Cornell University — Ithaca, NY</div>
+      <div class="title">B.S. Electrical Engineering</div>
+      <div class="dates">January 1992</div>
+    </div>
+    <p style="margin-top:0.75rem; font-size:0.85rem; color:var(--muted);">
+      Erdős number: <strong style="color:var(--text);">3</strong> ·
+      <a href="https://www.csauthors.net/distance/paul-erdos/vincent-zimmer" target="_blank">csauthors.net</a>
+    </p>
+  </section>
+
+  <footer>
+    <p>vincent.zimmer@gmail.com · Seattle area, WA ·
+      <a href="https://sites.google.com/site/vincentzimmer/cv">Full CV</a>
+    </p>
+  </footer>
+
+</div>
+</body>
+</html>
